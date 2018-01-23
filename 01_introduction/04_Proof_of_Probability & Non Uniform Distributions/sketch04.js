@@ -3,31 +3,20 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-// An array to keep track of how often random numbers are picked
-
-var randomCounts = [];
-var total = 20;
-
-function setup() {
-  createCanvas(640,360);
-  for (var i = 0; i < total; i++) {
-    randomCounts[i] = 0;
-  }
+funciton setup() {
+  createCanvas(640, 360);
+  background(127);
 }
 
-function draw() {
-  background(127);
-  var index = floor(random(total));
-  randomCounts[index]++;
+function draw(){
+  var xloc = randomGaussian();
+  console.log(xloc);
 
-  // Draw a rectangle to graph results
-  stroke(0);
-  strokeWeight(2);
-  fill(255);
+  var sd = 60;
+  var mean = width / 2;
+  xloc = (xloc * sc) + mean;
 
-  var w = width/randomCounts.length;
-
-  for (var x = 0; x < randomCounts.length; x++) {
-    rect(x*w,height-randomCounts[x],w-1,randomCounts[x]);
-  }
+  fill(0,10);
+  noStroke();
+  ellipse(xloc, height / 2, 16, 16);
 }
