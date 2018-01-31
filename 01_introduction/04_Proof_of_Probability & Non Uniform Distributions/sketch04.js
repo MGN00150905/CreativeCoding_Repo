@@ -19,4 +19,8 @@ function draw(){
   fill(0,10);
   noStroke();
   ellipse(xloc, height / 2, 16, 16);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 35309b70fafaa9ab1f315e60145c884aa836a1aa
