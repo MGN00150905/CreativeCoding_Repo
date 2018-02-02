@@ -24,40 +24,20 @@ function Walker() {
     point(this.x, this.y);
   };
   this.step = function() {
-    var probArray = [];
-    probArray[1] = 1;
-    probArray[2] = 1;
-    probArray[3] = 2;
-    probArray[4] = 3;
-    probArray[5] = 3;
-
-    var index = floor(random(probArray.length));
-    var r = probArray[index];
-
+    var choice = floor(random(4));
+    var r = random(1);
+    //40% still moving to the right
+    if(r < 0.4){
+      this.x++;
+    }else if (r < 0.6){
+      this.x--;
+    }else if (r < 0.8){
+      this.y++;
+    }else{
+      this.y--;
+    }
     this.x = constrain(this.x, 0, width - 1);
     this.y = constrain(this.y, 0, width - 1);
     
   };
-}
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-funciton setup() {
-  createCanvas(640, 360);
-  background(127);
-}
-
-function draw(){
-  var xloc = randomGaussian();
-  console.log(xloc);
-
-  var sd = 60;
-  var mean = width / 2;
-  xloc = (xloc * sc) + mean;
-
-  fill(0,10);
-  noStroke();
-  ellipse(xloc, height / 2, 16, 16);
 }

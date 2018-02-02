@@ -2,47 +2,30 @@
 
 [See the Code in action](code.html)
 
-In sketch we can see that everything up to here
-
-```js
-    this.render = function () {
-        stroke(0);
-        point(this.x, this.y);
-    }
-```
-
-Just like in sketch two. We are using are walker class to create a walker object and implementing the 'step' and 'render' classes in our draw function. 
-
+First we get a random Gaussian number. This number will have a mean of 0 and standard deviation of 1.
 
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 3;
-        probArray[5] = 3;
-
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
+        function draw(){
+          var xloc = randomGaussian();
+          console.log(xloc);
     }
 ```
 
-We have changed around our step function a little. We made this array so that there is 40% chance that the instance number (r) will be 1 or 3. There is 20% chance that it will be 2.
+We set our standard deviation to 60 and our mean to width/2 (Center of canvas on x-axis). Then we scale the random gaussian number by by our standard deviation and mean.
+
+Finally we draw the ellipse and the centre. and declare a size.
+
+
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 2;
-        probArray[5] = 3;
+          var sd = 120;
+          var mean = width / 2;
+          xloc = (xloc * sd) + mean;
 
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
+          fill(0,10);
+          noStroke();
+          ellipse(xloc, height / 2, 16, 16);
     }
 ```
 
-From this example above we can see that there is 40% chance that the instance number (r) will be 1 or 2. There is 20% chance that it will be 3.
