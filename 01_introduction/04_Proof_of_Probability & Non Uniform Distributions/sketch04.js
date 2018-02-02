@@ -26,8 +26,8 @@ function Walker() {
   this.step = function() {
     var probArray = [];
     probArray[1] = 1;
-    probArray[2] = 2;
-    probArray[3] = 3;
+    probArray[2] = 1;
+    probArray[3] = 2;
     probArray[4] = 3;
     probArray[5] = 3;
 
