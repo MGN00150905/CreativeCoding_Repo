@@ -1,4 +1,4 @@
-# Random Walker with 9 Outcomes
+# Normal/Gaussian random distribution
 
 [See the Code in action](code.html)
 
