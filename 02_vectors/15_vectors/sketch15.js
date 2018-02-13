@@ -11,7 +11,7 @@ function draw() {
 
     // add the current speee to the position.
     x = x + xspeed;
-    
+
 
     if((x > width) || (x <0)){
         xspeed = xspeed * -1;
@@ -20,7 +20,7 @@ function draw() {
     //Display circle at x position
     stroke(0);
     strokeWeight(2);
-    fill(127);
+    fill(222);
     ellipse(x, 180, 48, 48);
     
 }
