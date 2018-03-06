@@ -1,5 +1,3 @@
-x1# Random Walker with 9 Outcomes
-
 [See the Code in action](code.html)
 
 In our setup with declare a walker object

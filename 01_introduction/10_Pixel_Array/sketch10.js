@@ -1,22 +1,17 @@
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-funciton setup() {
-  createCanvas(640, 360);
-  background(127);
+function setup(){
+  createCanvas(400, 400);
+  pixelDensity(1);
 }
 
 function draw(){
-  var xloc = randomGaussian();
-  console.log(xloc);
+    loadPixels();
 
-  var sd = 60;
-  var mean = width / 2;
-  xloc = (xloc * sc) + mean;
+        var index = (2+2*5)*4
+        pixels[index+0] = 255;
+        pixels[index+1] = 0;
+        pixels[index+2] = 0;
+        pixels[index+3] = 255;
 
-  fill(0,10);
-  noStroke();
-  ellipse(xloc, height / 2, 16, 16);
+    updatePixels();
+
 }

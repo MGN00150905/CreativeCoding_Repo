@@ -1,48 +1,34 @@
-# Random Walker with 9 Outcomes
-
-[See the Code in action](code.html)
-
-In sketch we can see that everything up to here
+We need to set pixel density to 1 so we can clearly see each pixel
 
 ```js
-    this.render = function () {
-        stroke(0);
-        point(this.x, this.y);
+    function steup(){
+      createCanvas(400, 400);
+      pixelDensity(1);
     }
 ```
 
-Just like in sketch two. We are using are walker class to create a walker object and implementing the 'step' and 'render' classes in our draw function. 
+Here we are using a nested loop. Loop through each Y value. Then for each Y value, loop through each X value.
 
+Then we clculate the index by using the formula. 
 
-
-```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 3;
-        probArray[5] = 3;
-
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
-    }
-```
-
-We have changed around our step function a little. We made this array so that there is 40% chance that the instance number (r) will be 1 or 3. There is 20% chance that it will be 2.
+Notice now that we create a variable called bright. We set it to a random number between 0 and 255. this will make ever pixel change very quicly as we see it. As a result it gives us this white noise look. Such as an old analogue TV with no signal.
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 2;
-        probArray[5] = 3;
+    function draw(){
+      loadPixels();
 
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
+      for(var y = 0; y < height; y++){
+        for (var x = 0; x< width; x++){
+          var index = (x+y*width)*4
+          var bright = random(255);
+            pixels[index+0] = bright;
+            pixels[index+1] = bright;
+            pixels[index+2] = bright;
+            pixels[index+3] = 255;
+        }
+      }
+
+      updatePixels();
+
     }
 ```
-
-From this example above we can see that there is 40% chance that the instance number (r) will be 1 or 2. There is 20% chance that it will be 3.

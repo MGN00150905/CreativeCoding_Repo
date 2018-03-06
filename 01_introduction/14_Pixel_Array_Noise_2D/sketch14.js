@@ -1,22 +1,29 @@
+var yoff = 1000.0;
 
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-funciton setup() {
-  createCanvas(640, 360);
-  background(127);
+function setup(){
+  frameRate(1);
+  createCanvas(1000, 800);
+  pixelDensity(1);
+  noiseDetail(10);
 }
 
 function draw(){
-  var xloc = randomGaussian();
-  console.log(xloc);
+  loadPixels();
 
-  var sd = 60;
-  var mean = width / 2;
-  xloc = (xloc * sc) + mean;
+  for(var y = 0; y < height; y++){
+    var xoff = 100.0;
+    for (var x = 0; x< width; x++){
+      var index = (x+y*width)*4
+      var bright = map(noise(xoff, yoff), 0, 1, 0, 255);
+        pixels[index+0] = bright;
+        pixels[index+1] = bright;
+        pixels[index+2] = bright;
+        pixels[index+3] = 255;
 
-  fill(0,10);
-  noStroke();
-  ellipse(xloc, height / 2, 16, 16);
+        xoff += 0.002;
+    }
+    yoff += 0.002;
+  }
+  updatePixels();
+
 }

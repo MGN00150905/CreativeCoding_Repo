@@ -1,48 +1,44 @@
-# Random Walker with 9 Outcomes
-
-[See the Code in action](code.html)
-
-In sketch we can see that everything up to here
+We need to set pixel density to 1 so we can clearly see each pixel
+We set variable 'yoff' to 1000.0, think of this as a random moment in time offset by an amount.
 
 ```js
-    this.render = function () {
-        stroke(0);
-        point(this.x, this.y);
+var yoff = 1000.0;
+
+function setup(){
+      frameRate(1);
+      createCanvas(1000, 800);
+      pixelDensity(1);
+      noiseDetail(10);
     }
 ```
 
-Just like in sketch two. We are using are walker class to create a walker object and implementing the 'step' and 'render' classes in our draw function. 
+Here we are using a nested loop. Loop through each Y value. Then for each Y value, loop through each X value.
 
+Then we clculate the index by using the formula. 
 
+Now our bright variable is our random moments in time for X and Y mapped to values between 0 and 255.
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 3;
-        probArray[5] = 3;
+    function draw(){
+      loadPixels();
 
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
+      for(var y = 0; y < height; y++){
+        var xoff = 100.0;
+        for (var x = 0; x< width; x++){
+          var index = (x+y*width)*4
+          var bright = map(noise(xoff, yoff), 0, 1, 0, 255);
+            pixels[index+0] = bright;
+            pixels[index+1] = bright;
+            pixels[index+2] = bright;
+            pixels[index+3] = 255;
+
+            xoff += 0.002;
+        }
+        yoff += 0.002;
+      }
+      updatePixels();
+
     }
 ```
 
-We have changed around our step function a little. We made this array so that there is 40% chance that the instance number (r) will be 1 or 3. There is 20% chance that it will be 2.
-
-```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 2;
-        probArray[5] = 3;
-
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
-    }
-```
-
-From this example above we can see that there is 40% chance that the instance number (r) will be 1 or 2. There is 20% chance that it will be 3.
+Then we increment the values for xoff and yoff. The smaller the number is, the smoother it looks.
