@@ -1,48 +1,52 @@
-# Random Walker with 9 Outcomes
+x1# Random Walker with 9 Outcomes
 
 [See the Code in action](code.html)
 
-In sketch we can see that everything up to here
+In our setup with declare a walker object
 
 ```js
-    this.render = function () {
-        stroke(0);
-        point(this.x, this.y);
+    function setup() {
+          createCanvas(1200, 800);
+
+          walker = new Walker();
+          background(127);
+        }
     }
 ```
 
-Just like in sketch two. We are using are walker class to create a walker object and implementing the 'step' and 'render' classes in our draw function. 
+In the walker class, there are two functions. The render function simply displays the ecclipse with all its assoociated styles. Our step function is with makes the walker move (Re-drwa itself).  
+
+Notice the ecclipse is only movies sideways because we only have it moving on the x axis. The walker is moving sideways at a speed of any number between 0 and 1000. We set this.xOff to more than or equal to 0.005 in order to get the 'swoosh background' of the ellipse.
 
 
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 3;
-        probArray[5] = 3;
+      function Walker(){
 
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
+          this.x = width/2;
+          this.xOff = random(1000);
+
+          this.render = function(){
+            noStroke();
+            fill(258);
+            ellipse(this.x, 500, 40, 40)
+          }
+
+          this.step = function(){
+            this.x = map(noise(this.xOff),0,1,0,width);
+            this.xOff += 0.005;
+          }
+        }
     }
 ```
 
-We have changed around our step function a little. We made this array so that there is 40% chance that the instance number (r) will be 1 or 3. There is 20% chance that it will be 2.
+In our draw function we simply create a black background and call our to walker functions, step and render. These functions need to be called in the draw function in the correct order to work.
 
 ```js
-      this.step = function() {
-        var probArray = [];
-        probArray[1] = 1;
-        probArray[2] = 1;
-        probArray[3] = 2;
-        probArray[4] = 2;
-        probArray[5] = 3;
-
-        var index = floor(random(probArray.length));
-        var r = probArray[index];
-    }
+    function draw(){
+          fill(0,15);
+          rect(0,0,width,height);
+          walker.step();
+          walker.render();
+    }   
 ```
-
-From this example above we can see that there is 40% chance that the instance number (r) will be 1 or 2. There is 20% chance that it will be 3.
