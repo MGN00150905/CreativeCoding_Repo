@@ -1,31 +1,8 @@
-Vector are basically drawn as arrows on the canvas. 
+In this chapter I will cover the most basic building block for programming motion - Vectors.
 
-```js
+I will start with the basics and then leap into the complexity of vectors. How we can incorperate our mover class with using vectors. 
 
-var x = 320;
-var y = 180;
-var xspeed = 2;
-
-function setup() {
-    createCanvas(320,640);
-}
-
-function draw() {
-    background(51);
-
-    // add the current speee to the position.
-    x = x + xspeed;
+A vector is typically drawn as an arrow, the direction is indicated by where the arrow is pointing, and the magnitude by the length of the arrow itself.
 
 
-    if((x > width) || (x <0)){
-        xspeed = xspeed * -1;
-    }
-
-    //Display circle at x position
-    stroke(0);
-    strokeWeight(2);
-    fill(222);
-    ellipse(x, 180, 48, 48);
-    
-}
-```
+![](images/vec.png)
