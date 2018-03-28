@@ -7,3 +7,5 @@ A vector is typically drawn as an arrow, the direction is indicated by where the
 
 
 ![wank](images/vec.png)
+
+<img src = "images/vec.png">
