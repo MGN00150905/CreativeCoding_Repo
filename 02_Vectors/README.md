@@ -6,4 +6,10 @@ A vector is typically drawn as an arrow, the direction is indicated by where the
 
 
 
+<<<<<<< HEAD
 ![](images/vec.png)
+=======
+![wank](images/vec.png)
+
+<img src = "images/vec.png">
+>>>>>>> a421b185cfb42c0a8a1d7f5953b429ddbb02b7d8
