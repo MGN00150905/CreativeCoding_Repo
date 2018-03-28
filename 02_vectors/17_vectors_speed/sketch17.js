@@ -1,33 +1,33 @@
-var x = 320;
-var y = 180;
-var xspeed = 2;
-var yspeed = 2;
+var position;
+var velocity;
 
 function setup() {
     createCanvas(820,820);
-    img = loadImage("din.jpg"); 
+    position = createVector(100,100);//create vector for location at top left of canvas
+    velocity = createVector(2, 2);
 }
 
 function draw() {
     background(51);
 
-    // add the current speee to the position.
-    x = x + xspeed;
-    y = y + yspeed;
+    //add motion and to the current position
+    position.x = position.x + velocity.x;
+    position.y = position.y + velocity.y;
 
-
-    if((x > width) || (x <0)){
-        xspeed = xspeed * -1;
-    }
-    if((y > width) || (y <0)){
-        yspeed = yspeed * -1;
+    //ellipse cannot leave the canvas on the x or y axis
+    if ((position.x > width)||(position.x < 0)){
+        velocity.x = velocity.x * -1;
     }
 
-    //Display circle at x position
+    if ((position.y > width)||(position.y < 0)){
+        velocity.y = velocity.y * -1;
+    }
+
+
+    //Start the circle at x an y position
     stroke(0);
     strokeWeight(2);
     fill(127);
-    ellipse(x, y, 48, 48);
-    image(img, x, y);
+    ellipse(position.x, position.y, 48, 48);
     
 }
