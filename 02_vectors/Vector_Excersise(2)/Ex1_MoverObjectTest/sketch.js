@@ -1,17 +1,18 @@
 var mover = [];
+var amount = 200;
 
 function setup(){
 	createCanvas(1000,500);
 
-	for(var i=0; i < 2000; i++){
+	for(var i=0; i < amount; i++){
 		mover[i] = new Mover();
 	}
 }
 
 function draw(){
-	background(51);
+	background(0.8,0);
 
-	for(var i=0; i < 2000; i++){
+	for(var i=0; i < amount; i++){
 	mover[i].prison();
 	mover[i].update();
 	mover[i].render();

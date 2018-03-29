@@ -1,8 +1,7 @@
 var Mover = function(){
     this.location = createVector(random(width),random(height));
-    this.velocity = createVector(0,0);
-    this.accelaration = p5.Vector.random2D();
-    this.accelaration.mult(0.2);
+    this.velocity = createVector(3,3);
+    this.accelaration = createVector(); //
 
     this.render = function(){
         stroke(150);
@@ -16,6 +15,11 @@ var Mover = function(){
 
 
     this.update = function(){
+        var mouse = createVector(mouseX, mouseY);
+
+        this.accelaration = p5.Vector.sub(mouse, this.location);
+        this.accelaration.setMag(0.2);
+
         //adding speed to our velocity
         this.velocity.add(this.accelaration);
         //Give the speed a limit so it doesn't get faster and faster 

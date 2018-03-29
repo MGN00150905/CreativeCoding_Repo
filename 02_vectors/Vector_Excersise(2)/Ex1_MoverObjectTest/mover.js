@@ -1,13 +1,14 @@
 function Mover(){
-	this.location = createVector(Math.floor(random(width)),Math.floor(random(width)));
+	this.location = createVector(Math.floor(random(width)),Math.floor(random(height)));
 
-	this.velocity = createVector(3,2);
+	this.velocity = createVector(3,3);
 
-	this.acceleration = createVector(Math.floor(random(width)),Math.floor(random(height)) );
+	this.acceleration = createVector(0.02,0.02);
 
 	this.render = function(){
-		noStroke();
-		fill(177);
+		stroke(0);
+		strokeWeight(1)
+		fill(177,155,200);
 		ellipse(this.location.x,this.location.y,10,10)
 
 	}
