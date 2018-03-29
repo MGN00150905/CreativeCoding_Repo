@@ -9,6 +9,7 @@ function setup() {
     position = createVector(100,100);//create vector for location at top left of canvas
     velocity = createVector(2, 2);
 }
+```
 
 Here we add motion and speed to the current position by adding our velocity value to the location of the ellipse
 
