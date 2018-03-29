@@ -1,33 +1,31 @@
-var x = 320;
-var y = 180;
-var xspeed = 2;
-var yspeed = 2;
+var Mover = function(){
+    this.location = createVector(random(width),random(height));
+    this.velocity = createVector(8,5);
 
-function setup() {
-    createCanvas(820,820);
-    img = loadImage("din.jpg"); 
-}
+    this.render = function(){
+        stroke(150);
+        strokeWeight(2);
+        fill(0, 0, 255);
 
-function draw() {
-    background(51);
+        //Draw an ellipse at this.location (random)
+        ellipse(this.location.x,this.location.y,20,20);
 
-    // add the current speee to the position.
-    x = x + xspeed;
-    y = y + yspeed;
-
-
-    if((x > width) || (x <0)){
-        xspeed = xspeed * -1;
-    }
-    if((y > width) || (y <0)){
-        yspeed = yspeed * -1;
     }
 
-    //Display circle at x position
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    ellipse(x, y, 48, 48);
-    image(img, x, y);
-    
+    //Adding motion to the mover in a particular direction
+    this.update = function(){
+        this.location.add(this.velocity);
+    }
+
+    this.container = function(){
+        if(this.location.x < 0 || this.location.x > width){
+            this.velocity.x = this.velocity.x * -1;
+        }
+
+        if(this.location.y < 0 || this.location.y > height){
+            this.velocity.y = this.velocity.y * -1;
+        }
+    }
+
+
 }
