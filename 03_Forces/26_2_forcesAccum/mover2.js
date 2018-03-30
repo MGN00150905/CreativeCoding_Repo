@@ -1,19 +1,22 @@
 var Mover = function(){
-    this.location = createVector(random(width),random(height));
+    this.location = createVector(30,30);
     this.velocity = createVector(0,0);
-    this.accelaration = p5.Vector.random2D();
-    this.accelaration.mult(0.2);
+    this.accelaration = createVector(0,0);
+
+    this.radius = 170;
+    this.r = 255;
+    this.g = 255;
+    this.b = 255;
 
     this.render = function(){
         stroke(150);
         strokeWeight(2);
-        fill(0, 0, 255);
+        fill(random(this.r),random(this.g) , random(this.b));
 
         //Draw an ellipse at this.location (random)
-        ellipse(this.location.x,this.location.y,20,20);
+        ellipse(this.location.x,this.location.y,random(this.radius),random(this.radius));
 
     }
-
 
     this.update = function(){
         //adding speed to our velocity
@@ -22,6 +25,7 @@ var Mover = function(){
         this.velocity.limit(10);
         //Adding motion to the mover in a particular direction      
         this.location.add(this.velocity);
+        this.accelaration.mult(0);
     }
 
     this.container = function(){
@@ -32,6 +36,10 @@ var Mover = function(){
         if(this.location.y < 0 || this.location.y > height){
             this.velocity.y = this.velocity.y * -1;
         }
+    }
+
+    this.applyForce = function(force){
+        this.accelaration.add(force);
     }
 
 

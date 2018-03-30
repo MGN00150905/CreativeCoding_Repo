@@ -1,8 +1,7 @@
 var Mover = function(){
     this.location = createVector(random(width),random(height));
     this.velocity = createVector(0,0);
-    this.accelaration = p5.Vector.random2D();
-    this.accelaration.mult(0.2);
+    this.accelaration = createVector(0,0);
 
     this.render = function(){
         stroke(150);
@@ -32,6 +31,10 @@ var Mover = function(){
         if(this.location.y < 0 || this.location.y > height){
             this.velocity.y = this.velocity.y * -1;
         }
+    }
+
+    this.applyForce = function(force){
+        this.accelaration = force;
     }
 
 
