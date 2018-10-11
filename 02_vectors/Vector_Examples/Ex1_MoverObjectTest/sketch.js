@@ -10,7 +10,7 @@ function setup(){
 }
 
 function draw(){
-	background(0.8,0);
+	background(0,0,0,40);
 
 	for(var i=0; i < amount; i++){
 	mover[i].prison();

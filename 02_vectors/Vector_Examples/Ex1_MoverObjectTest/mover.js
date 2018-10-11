@@ -1,7 +1,7 @@
 function Mover(){
 	this.location = createVector(Math.floor(random(width)),Math.floor(random(height)));
 
-	this.velocity = createVector(3,3);
+	this.velocity = createVector(random(-3),random(3));
 
 	this.acceleration = createVector(0.02,0.02);
 
@@ -9,7 +9,7 @@ function Mover(){
 		stroke(0);
 		strokeWeight(1)
 		fill(177,155,200);
-		ellipse(this.location.x,this.location.y,10,10)
+		ellipse(this.location.x,this.location.y,2,2)
 
 	}
 
