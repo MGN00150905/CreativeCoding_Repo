@@ -1,41 +1,38 @@
-In this sketch we jump straight to the draw function.
+At first we create a canvas and assign its width and height values.
+We then make the cursor invisible while over the canvas.
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
-
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
+The colorMode() function is used to change the numerical range used
+for specifying colours and to switch colour systems.
+It takes 3 parameters as ranges for each value(HSB, H, S, B).
+There are two colour modes RGB or HSB, that correspond to Red, Green, Blue and Hugh, Saturation and Brightness
 
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
+'use strict';
+
+function setup() {
+  createCanvas(720, 720);
+  noCursor();
+
+  colorMode(HSB, 360, 100, 100);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function draw() {
+  background(mouseY / 2, 100, 100);
+
+  fill(360 - mouseY / 2, 100, 100);
+  rect(360, 360, mouseX + 1, mouseX + 1);
+}
+
+function keyPressed() {
+  if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
+}
 ```
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
 
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
 
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
+As an overall, the x value of the mouse position defines the size of the colour field (Ranging from 0 - 720).
+Whereas the y value defines the hue.
 
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
-
-```
+Using the keyPressed function we capture a png of the canvas any time the 's' or 'S' key is pressed.
