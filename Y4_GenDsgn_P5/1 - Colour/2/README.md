@@ -1,41 +1,38 @@
-In this sketch we jump straight to the draw function.
+COLOUR SPECTRUM IN A GRID
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
+In this sketch we generate a mad amount of coloured triangles.
+Each tile is assigned a hue and saturation value.
+Hue on the horizontal axis and saturation the other.
+The main colours in the spectrum can be seen more clearly
+by enlarging the rectangles.
 
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
 
 
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
-```
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
+  var stepX;
+  var stepY;
 
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
+  function setup() {
+    createCanvas(800, 400);
+    noStroke();
+    colorMode(HSB, width, height, 100);
+  }
 
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
+  function draw() {
+    stepX = mouseX + 3;
+    stepY = mouseY + 3;
 
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
+    for (var gridY = 0; gridY < height; gridY += stepY) {
+      for (var gridX = 0; gridX < width; gridX += stepX) {
+        fill(gridX, height - gridY, 100);
+        rect(gridX, gridY, stepX, stepY);
+      }
+    }
+  }
+
+  function keyPressed() {
+    if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
+  }
 
 ```
