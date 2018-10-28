@@ -5,14 +5,14 @@ var stepX;
 var stepY;
 
 function setup() {
-  createCanvas(800, 400);
+  createCanvas(windowWidth, windowHeight);
   noStroke();
-  colorMode(HSB, width, height, 100);
+  colorMode(HSB, height, width, 100);
 }
 
 function draw() {
-  stepX = mouseX + 3;
-  stepY = mouseY + 3;
+  stepX = mouseX + 1;
+  stepY = mouseY + 1;
 
   for (var gridY = 0; gridY < height; gridY += stepY) {
     for (var gridX = 0; gridX < width; gridX += stepX) {

@@ -6,7 +6,7 @@ Hue on the horizontal axis and saturation the other.
 The main colours in the spectrum can be seen more clearly
 by enlarging the rectangles.
 
-
+we start off by assigning
 
 ```js
 
