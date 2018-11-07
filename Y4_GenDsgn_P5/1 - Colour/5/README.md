@@ -7,6 +7,8 @@ them as rectangles on the canvas.
 We also explore in changing the sortmode of each image. Sorting it by
 Hue, Saturation, Brightness and Greyscale.
 
+![](5.png)
+
 ```js
 
 'use strict';
