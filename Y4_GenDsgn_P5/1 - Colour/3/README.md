@@ -1,4 +1,4 @@
-##Colour spectrum in a circle
+## Colour spectrum in a circle
 
 In this exercise we will create a colour wheel which displays
 different HSB values depending on where the mouse is or
