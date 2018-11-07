@@ -1,41 +1,70 @@
-In this sketch we jump straight to the draw function.
+We create variables for tile count of x and y position.
+Create an array for colours on the left and the right.
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
+We then set our interpolating variable to true.
 
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
-
+Shake colours is a function called that is used in further steps.
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
+var tileCountX = 2;
+var tileCountY = 10;
+
+
+var colorsLeft = []
+var colorsRight = [];
+var colors = [];
+
+var interpolateShortest = true;
+
+function setup() {
+  createCanvas(800, 800);
+  colorMode(HSB);
+  noStroke();
+  shakeColors();
+}
 ```
+The number of gradations tileCountX are determined by the x mouse position.
+If the mouseX value is at 0, there will be no gradation to be seen.
+The same goes for the number of rows on tileCountY.
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
+So accentually we generate more rows as we move down the y-axis with the mouse
+and we generate more gradients of the previous colour as we move our move up the x-axis
 
 ```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
+function draw() {
+  tileCountX = int(map(mouseX, 0, width, 2, 100));
+  tileCountY = int(map(mouseY, 0, height, 2, 10));
+  var tileWidth = width / tileCountX;
+  var tileHeight = height / tileCountY;
+  var interCol;
+  colors = [];
 
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
+  for (var gridY = 0; gridY < tileCountY; gridY++) {
+    var col1 = colorsLeft[gridY];
+    var col2 = colorsRight[gridY];
 
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
+    for (var gridX = 0; gridX < tileCountX; gridX++) {
+      var amount = map(gridX, 0, tileCountX - 1, 0, 1);
+
+      if (interpolateShortest) {
+        // switch to rgb
+        colorMode(RGB);
+        interCol = lerpColor(col1, col2, amount);
+        // switch back
+        colorMode(HSB);
+      } else {
+        interCol = lerpColor(col1, col2, amount);
+      }
+
+      fill(interCol);
+
+      var posX = tileWidth * gridX;
+      var posY = tileHeight * gridY;
+      rect(posX, posY, tileWidth, tileHeight);
+
+      // save color for potential ase export
+      colors.push(interCol);
+    }
+  }
+}
 
 ```
