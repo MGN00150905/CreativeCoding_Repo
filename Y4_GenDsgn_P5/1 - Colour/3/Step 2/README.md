@@ -1,41 +1,39 @@
-In this sketch we jump straight to the draw function.
+In Step 2 of this exercise we begin to draw the shape of the circle
+or colour fan. We call it a colour fan because the segments of the
+colour wheel are arranged in the shape of a fan.
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
+We create a variable for each angle step, assign it to 360 and divide it by segmentCount.
 
+Then we begin the create our colour fan using beginShape() and endShape(). This method draws a
+shape step by step using vertex for each step.
 
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
+TRIANGLE_FAN is a predefined set of shapes in p5 and is used with beginShape().
+The individual vertices of the triangle fan are computed by the cosine and sine of the corresponding angle.
+We set the fist vertex of the shape to be in the centre of the canvas.    
 
-The line will always be drawn from the center of the cavas to the mouse
+Using a for loop we can loop through each angle up to 360 and we add angleStep to angle upon each iteration.
 
-
+Circles are measured in degrees in the real world [0-360]. Where as in the world of computing we measure in
+radians(0-2π).
+Angle needs to be converted into radians because the function cos() and sin() need it to be inputted this way.
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
+  var angleStep = 360 / segmentCount;
+
+  beginShape(TRIANGLE_FAN);
+  vertex(width / 2, height / 2);
+
+  for (var angle = 0; angle <= 360; angle += angleStep) {
+    var vx = width / 2 + cos(radians(angle)) * radius;
+    var vy = height / 2 + sin(radians(angle)) * radius;
+    vertex(vx, vy);
+    fill(angle, mouseX, mouseY);
+  }
+
+  endShape();
+}
 ```
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
-
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
-
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
-
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
-
-```
+Then we simply assign vx and vy to the vertex() function.
+The Hue of this colour wheel changes depending on the angle value.
+The saturation of this colour wheel changes depending on the mouseX position.
+The brightness of this colour wheel changes depending on the mouseY position.
