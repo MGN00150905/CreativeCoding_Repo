@@ -1,41 +1,30 @@
-In this sketch we jump straight to the draw function.
+Here we are making an array for each HSB colour value.
+Hue, Saturation and Brightness.
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
+We assign colorMode to HSB giving all components the max values.
 
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
-
+For every tile on the x axis we assign its HSB values to be random.
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
-```
+'use strict';
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
+var tileCountX = 50;
+var tileCountY = 10;
 
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
+var hueValues = [];
+var saturationValues = [];
+var brightnessValues = [];
 
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 360, 100, 100, 100);
+  noStroke();
 
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
+  // init with random values
+  for (var i = 0; i < tileCountX; i++) {
+    hueValues[i] = random(360);
+    saturationValues[i] = random(100);
+    brightnessValues[i] = random(100);
+  }
+}
 
 ```

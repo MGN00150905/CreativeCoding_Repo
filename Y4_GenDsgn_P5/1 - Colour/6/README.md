@@ -1,41 +1,9 @@
-In this sketch we jump straight to the draw function.
+## Colour palettes from rules
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
+![](6.png)
 
+Here we explore a bit more into the hue, saturation and brightness of
+colours. How the values for these colour components are defined by a set of rules.
 
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
-
-```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
-```
-
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
-
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
-
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
-
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
-
-```
+Using controlled randomness, it is more simple and quick to create difference
+palettes in specific colour nuances.

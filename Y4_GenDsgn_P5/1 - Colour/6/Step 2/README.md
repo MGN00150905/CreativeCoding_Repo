@@ -1,41 +1,36 @@
-In this sketch we jump straight to the draw function.
-
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
-
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
 
 
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
-```
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
+function draw() {
+  // white back
+  background(0, 0, 100);
 
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
+  // limit mouse coordinates to canvas
+  var mX = constrain(mouseX, 0, width);
+  var mY = constrain(mouseY, 0, height);
 
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
+  // tile counter
+  var counter = 0;
 
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
+  // map mouse to grid resolution
+  var currentTileCountX = int(map(mX, 0, width, 1, tileCountX));
+  var currentTileCountY = int(map(mY, 0, height, 1, tileCountY));
+  var tileWidth = width / currentTileCountX;
+  var tileHeight = height / currentTileCountY;
+
+  for (var gridY = 0; gridY < tileCountY; gridY++) {
+    for (var gridX = 0; gridX < tileCountX; gridX++) {
+      var posX = tileWidth * gridX;
+      var posY = tileHeight * gridY;
+      var index = counter % currentTileCountX;
+
+      // get component color values
+      fill(hueValues[index], saturationValues[index], brightnessValues[index]);
+      rect(posX, posY, tileWidth, tileHeight);
+      counter++;
+    }
+  }
+}
 
 ```
