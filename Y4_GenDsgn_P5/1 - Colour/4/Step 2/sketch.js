@@ -1,35 +1,4 @@
-// P_1_2_1_01
-//
-// Generative Gestaltung – Creative Coding im Web
-// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
-// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
-// with contributions by Joey Lee and Niels Poldervaart
-// Copyright 2018
-//
-// http://www.generative-gestaltung.de
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/**
- * shows how to interpolate colors in different styles/ color modes
- *
- * MOUSE
- * left click          : new random color set
- * position x          : interpolation resolution
- * position y          : row count
- *
- * KEYS
- * 1-2                 : switch interpolation style
- * s                   : save png
- * c                   : save color palette
- */
+//Step 2
 'use strict';
 
 var tileCountX = 2;
@@ -85,6 +54,8 @@ function draw() {
   }
 }
 
+//Loops through every tile on the y axis
+//changes each element in colorsLeft and colorsRight to another random colour.
 function shakeColors() {
   for (var i = 0; i < tileCountY; i++) {
     colorsLeft[i] = color(random(0, 60), random(0, 100), 100);
@@ -92,6 +63,7 @@ function shakeColors() {
   }
 }
 
+//initiates shakeColors function after clicking the mouse.
 function mouseReleased() {
   shakeColors();
 }

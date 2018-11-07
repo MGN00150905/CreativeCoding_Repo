@@ -1,41 +1,20 @@
-In this sketch we jump straight to the draw function.
+This function will change the colours on the Y axis toa diferent colour.
+Therefore changing the colours on the x axis.
 
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
-
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
+For colorsLeft and colorsRight, we are changing the colours to random values.
+Notice that some colour values will be change with a range of randomness.( random(0, 60) )  
 
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
-```
+function shakeColors() {
+  for (var i = 0; i < tileCountY; i++) {
+    colorsLeft[i] = color(random(0, 60), random(0, 100), 100);
+    colorsRight[i] = color(random(160, 190), 100, random(0, 100));
+  }
+}
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
-
-```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
-
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
-
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
+function mouseReleased() {
+  shakeColors();
+}
 
 ```
+When the mouse is released after clicking, the shakeColors function will initiate.

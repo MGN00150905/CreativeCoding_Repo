@@ -1,14 +1,14 @@
 //step1
 'use strict';
-
+//amount of tiles for each axis
 var tileCountX = 2;
 var tileCountY = 10;
 
-
+//Color arrays
 var colorsLeft = []
 var colorsRight = [];
 var colors = [];
-
+//Will be used later on to swap from RGB and HSB
 var interpolateShortest = true;
 
 function setup() {
@@ -18,6 +18,8 @@ function setup() {
   shakeColors();
 }
 
+//Mapping the range of mouseX from (0 - width) to the range of (2, 100)
+//Mapping the range of mouseY from (0 - height) to the range of (2, 10)
 function draw() {
   tileCountX = int(map(mouseX, 0, width, 2, 100));
   tileCountY = int(map(mouseY, 0, height, 2, 10));
@@ -26,13 +28,18 @@ function draw() {
   var interCol;
   colors = [];
 
+//Generating grid on y-axis
+//Assign colours on right and left to their colours array
   for (var gridY = 0; gridY < tileCountY; gridY++) {
     var col1 = colorsLeft[gridY];
     var col2 = colorsRight[gridY];
 
+//Mapping the amound to be interpolated between the two colours on x-axis
     for (var gridX = 0; gridX < tileCountX; gridX++) {
       var amount = map(gridX, 0, tileCountX - 1, 0, 1);
 
+//Blend two colours together to find a third in between
+//For RGB and HSB
       if (interpolateShortest) {
         // switch to rgb
         colorMode(RGB);
@@ -43,8 +50,11 @@ function draw() {
         interCol = lerpColor(col1, col2, amount);
       }
 
+//Fill with swatch of interpolated colours
+//The way that colours are interpolated depends on the current color mode.
       fill(interCol);
 
+//Creat rectangles
       var posX = tileWidth * gridX;
       var posY = tileHeight * gridY;
       rect(posX, posY, tileWidth, tileHeight);
