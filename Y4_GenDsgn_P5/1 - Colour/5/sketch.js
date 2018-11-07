@@ -1,44 +1,11 @@
-// P_1_2_2_01
-//
-// Generative Gestaltung – Creative Coding im Web
-// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
-// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
-// with contributions by Joey Lee and Niels Poldervaart
-// Copyright 2018
-//
-// http://www.generative-gestaltung.de
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
-/**
- * extract and sort the color palette of an image
- *
- * MOUSE
- * position x          : resolution
- *
- * KEYS
- * 1-4                 : load different images
- * 5                   : no color sorting
- * 6                   : sort colors on hue
- * 7                   : sort colors on saturation
- * 8                   : sort colors on brightness
- * 9                   : sort colors on greyscale (luminance)
- * s                   : save png
- * c                   : save color palette
- */
 'use strict';
 
 var img;
 var colors = [];
 var sortMode = null;
 
+//load image
 function preload() {
   img = loadImage('data/pic1.jpg');
 }
@@ -49,13 +16,18 @@ function setup() {
   noStroke();
 }
 
+//Setting tileCount to the width of the cavas, divided by the
+//max value between the mouseX position and 5
 function draw() {
   var tileCount = floor(width / max(mouseX, 5));
   var rectSize = width / tileCount;
 
+//Displays image
   img.loadPixels();
   colors = [];
 
+//Now the image is being scanned row by row with the
+//previously calculated grid spacing
   for (var gridY = 0; gridY < tileCount; gridY++) {
     for (var gridX = 0; gridX < tileCount; gridX++) {
       var px = int(gridX * rectSize);
@@ -65,19 +37,22 @@ function draw() {
       colors.push(c);
     }
   }
-
+//When sortMode is selected the colours are sorted using the function sortColors()
   gd.sortColors(colors, sortMode);
 
   var i = 0;
   for (var gridY = 0; gridY < tileCount; gridY++) {
     for (var gridX = 0; gridX < tileCount; gridX++) {
+//Grid is processed again in order to draw the palette.
+//The fill colours for the tiles are taken, value by value, from the array colours
       fill(colors[i]);
       rect(gridX * rectSize, gridY * rectSize, rectSize, rectSize);
       i++;
     }
   }
 }
-
+//keys 1-4 to load various images
+// keys 5-9 used to sort image by hue, saturation, brightness and grayscale. 
 function keyReleased() {
   if (key == 'c' || key == 'C') writeFile([gd.ase.encode(colors)], gd.timestamp(), 'ase');
   if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
