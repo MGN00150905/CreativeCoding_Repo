@@ -1,41 +1,26 @@
-In this sketch we jump straight to the draw function.
-
-Creating a vector for mouse coordinates.
-We also create a vector for the center of the canvas.
-
-
-Similar to the last sketch only we are now subtracting 
-the center from the mouse location.
-
-The line will always be drawn from the center of the cavas to the mouse
-
+Using a central gradient on the tiles.
 
 ```js
-    var mouse = createVector(mouseX, mouseY);
-    var center = createVector(width/2, height/2);
-    var vectorLine = mouse.sub(center);
+function centerGradient(x1, y1, r1, x2, y2, r2, c1, c2) {
+  var ctx = drawingContext; // global canvas context p5.js var
+  var cx = x1 + (x2 - x1) / 2;
+  var cy = y1 + (y2 - y1) / 2;
+  var grd = ctx.createRadialGradient(cx, cy, r1, cx, cy, r2);
+  grd.addColorStop(0, c1.toString());
+  grd.addColorStop(1, c2.toString());
+	ctx.fillStyle = grd;
+	ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+}
+
 ```
 
-Here we are using the mag function to get the length of the vector
-(Otherly know as Magnitude)
-This evidentally shows the length of our vector using a rectangle at the top of the canvas.
+Here we are also creating a new x and y position for each rectangle.
 
 ```js
-    var m = vectorLine.mag();
-    fill(255);
-    stroke(0);
-    rect(0,0,m,10);
-```
-
-Here we need to translate the canvas so the line is in the center
-as opposed to starting at the top left.
-
-    
-```js
-    translate(width/2, height/2)
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
-    line(0, 0, vectorLine.x, vectorLine.y);
-
+var w = map(parts[ii], 0, sumPartsTotal, 0, width);
+var h = rowHeight * 1.5
+var px1 = map(sumPartsNow, 0, sumPartsTotal, 0, width);
+var px2 = px1 + w;
+var py1 = rowHeight * i;
+var py2 = py1 + h;
 ```
