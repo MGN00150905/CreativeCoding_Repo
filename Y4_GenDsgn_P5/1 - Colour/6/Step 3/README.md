@@ -1,3 +1,12 @@
+In our keyPressed function we can:
+
+Save a screenshot of the canvas.
+Export a swatch file of the current colour palette.
+
+Display different HSB colours with controlled randomness pressing keys 0-9
+
+Click into the sketch.js file do better understand what is happening after
+pressing each key.
 
 ```js
 function keyPressed() {

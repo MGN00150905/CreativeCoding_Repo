@@ -30,6 +30,7 @@ function draw() {
   // limit mouse coordinates to canvas
   var mX = constrain(mouseX, 0, width);
   var mY = constrain(mouseY, 0, height);
+  console.log(mX);
 
   // tile counter
   var counter = 0;

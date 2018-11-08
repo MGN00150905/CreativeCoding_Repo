@@ -55,16 +55,17 @@ function draw() {
 }
 
 function keyPressed() {
+  //Save screenshot
   if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
   if (key == 'c' || key == 'C') {
     // -- save an ase file (adobe swatch export) --
-    var colors = [];
+    var colors = [];//array for colour swatch
     for (var i = 0; i < hueValues.length; i++) {
       colors.push(color(hueValues[i], saturationValues[i], brightnessValues[i]));
     }
     writeFile([gd.ase.encode(colors)], gd.timestamp(), 'ase');
   }
-
+  //3 arrays are filled with random values. This means any can appear on the palette
   if (key == '1') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = random(360);
@@ -72,7 +73,7 @@ function keyPressed() {
       brightnessValues[i] = random(100);
     }
   }
-
+  //Result of palette dominated by bright colours as brightness is always maxed (100)
   if (key == '2') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = random(360);
@@ -80,7 +81,7 @@ function keyPressed() {
       brightnessValues[i] = 100;
     }
   }
-
+  //No pastal tones created as saturation is always at max value
   if (key == '3') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = random(360);
@@ -88,7 +89,7 @@ function keyPressed() {
       brightnessValues[i] = random(100);
     }
   }
-
+  //Hue and Saturation set to 0 which will give a black & white effect
   if (key == '4') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = 0;
@@ -96,7 +97,7 @@ function keyPressed() {
       brightnessValues[i] = random(100);
     }
   }
-
+  //Displays a very blue-ish theme
   if (key == '5') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = 195;
@@ -104,7 +105,7 @@ function keyPressed() {
       brightnessValues[i] = random(100);
     }
   }
-
+  //Displays a reddish theme
   if (key == '6') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = 195;
@@ -112,7 +113,7 @@ function keyPressed() {
       brightnessValues[i] = 100;
     }
   }
-
+  //Hue is only ranged from the first half of the colour wheel, giving it a warm theme
   if (key == '7') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = random(180);
@@ -120,7 +121,7 @@ function keyPressed() {
       brightnessValues[i] = random(50, 90);
     }
   }
-
+  //Hue is randomly ranged from the second half of the colour wheel giving it a colder effect
   if (key == '8') {
     for (var i = 0; i < tileCountX; i++) {
       hueValues[i] = random(180, 360);
@@ -128,7 +129,8 @@ function keyPressed() {
       brightnessValues[i] = random(50, 90);
     }
   }
-
+  //Mixing two colour palettes, Display first palette if 0 remains.
+  //Display second palette if 1 remains
   if (key == '9') {
     for (var i = 0; i < tileCountX; i++) {
       if (i % 2 == 0) {
@@ -142,8 +144,8 @@ function keyPressed() {
       }
     }
   }
-
-  if (key == '0') {
+  //Mixing two colour palettes, Display first palette if 0 remains.
+  //Display second palette if 1 remains  if (key == '0') {
     for (var i = 0; i < tileCountX; i++) {
       if (i % 2 == 0) {
         hueValues[i] = 140;

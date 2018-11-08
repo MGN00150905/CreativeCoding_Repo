@@ -40,6 +40,7 @@ function draw() {
   var tileWidth = width / currentTileCountX;
   var tileHeight = height / currentTileCountY;
 
+  //Nested loop to generate grid
   for (var gridY = 0; gridY < tileCountY; gridY++) {
     for (var gridX = 0; gridX < tileCountX; gridX++) {
       var posX = tileWidth * gridX;
@@ -49,6 +50,7 @@ function draw() {
       // get component color values
       fill(hueValues[index], saturationValues[index], brightnessValues[index]);
       rect(posX, posY, tileWidth, tileHeight);
+      //increment tile counter
       counter++;
     }
   }
