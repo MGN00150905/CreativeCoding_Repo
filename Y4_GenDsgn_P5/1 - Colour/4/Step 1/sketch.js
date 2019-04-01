@@ -1,8 +1,8 @@
 //step1
 'use strict';
 //amount of tiles for each axis
-var tileCountX = 2;
-var tileCountY = 10;
+var tileCountX = 1;
+var tileCountY = 2;
 
 //Color arrays
 var colorsLeft = []

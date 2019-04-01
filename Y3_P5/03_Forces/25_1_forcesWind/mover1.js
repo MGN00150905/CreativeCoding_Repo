@@ -2,6 +2,7 @@ var Mover = function(){
     this.location = createVector(random(width),random(height));
     this.velocity = createVector(0,0);
     this.accelaration = createVector(0,0);
+    this.text = 'hiya';
 
     this.render = function(){
         stroke(150);
@@ -9,7 +10,7 @@ var Mover = function(){
         fill(0, 0, 255);
 
         //Draw an ellipse at this.location (random)
-        ellipse(this.location.x,this.location.y,20,20);
+        text(this.text, this.location.x,this.location.y,20,20);
 
     }
 
@@ -17,9 +18,9 @@ var Mover = function(){
     this.update = function(){
         //adding speed to our velocity
         this.velocity.add(this.accelaration);
-        //Give the speed a limit so it doesn't get faster and faster 
+        //Give the speed a limit so it doesn't get faster and faster
         this.velocity.limit(10);
-        //Adding motion to the mover in a particular direction      
+        //Adding motion to the mover in a particular direction
         this.location.add(this.velocity);
     }
 

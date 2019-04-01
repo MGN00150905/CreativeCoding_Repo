@@ -8,8 +8,8 @@ function Mover(){
 	this.render = function(){
 		stroke(0);
 		strokeWeight(1)
-		fill(177,155,200);
-		ellipse(this.location.x,this.location.y,2,2)
+		fill(random(255),155,random(255));
+		ellipse(this.location.x,this.location.y,50,50)
 
 	}
 

@@ -1,6 +1,5 @@
 var mover = [];
-var amount = 200;
-
+var amount = 50;
 function setup(){
 	createCanvas(1000,500);
 
@@ -10,7 +9,7 @@ function setup(){
 }
 
 function draw(){
-	background(0,0,0,40);
+	background(0,0,0);
 
 	for(var i=0; i < amount; i++){
 	mover[i].prison();
